@@ -44,11 +44,6 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: Report coverage to coveralls.io
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-
     # TODO: remove after https://github.com/bundlewatch/bundlewatch/pull/66 is merged and released
     # https://stackoverflow.com/a/58035262
     - name: Extract the branch name

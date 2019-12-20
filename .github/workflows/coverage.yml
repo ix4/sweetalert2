@@ -1,0 +1,28 @@
+name: coverage
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  coverage:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install npm dependencies
+      run: yarn install
+
+    - name: Prepare src folder for generating coverage report
+      run: yarn nyc:instrument
+
+    - name: Run Cypress tests and generate coverage report
+      run: yarn cy:ci
+
+    - name: Report coverage to coveralls.io
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
